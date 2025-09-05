@@ -28,10 +28,10 @@ public class ItemController {
 		return itemService.getAllItems();
 	}
 	
-	@PostMapping("/all")
-	public void storeAllObjects() {
-		itemService.setAllItems();
-	}
+//	@PostMapping("/all")
+//	public void storeAllObjects() {
+//		itemService.setAllItems();
+//	}
 	
 	@GetMapping("/options")
 	public Map<String, List<String>> getOptions(){

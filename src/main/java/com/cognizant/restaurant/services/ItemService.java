@@ -1,8 +1,10 @@
 package com.cognizant.restaurant.services;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -38,6 +40,21 @@ public class ItemService {
 	
 	public List<ItemProjection> getAllItems() {
 		return itemRepository.findAllProjectedBy();
+	}
+	
+	public ItemProjection getItem(Long id){
+		return itemRepository.findProjectionById(id).orElse(null);
+	}
+	
+	public List<ItemProjection> getItems(List<Long> ids){
+//		List<Optional<ItemProjection>> items = itemRepository.findAllProjectionsById(ids);
+//		List<ItemProjection> ans = new ArrayList<>();
+//		for (Optional<ItemProjection> item : items) {
+//			if(item.isEmpty()) return null;
+//			ans.add(item.get());
+//		}
+		return itemRepository.findAllProjectionsByIds(ids);
+		
 	}
 	
 	public void setAllItems() {

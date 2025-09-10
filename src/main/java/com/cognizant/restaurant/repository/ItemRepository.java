@@ -1,6 +1,7 @@
 package com.cognizant.restaurant.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,12 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 	List<ItemProjection> findAllProjectedBy();
 
 	List<ItemProjection> findAllProjectedBy(Pageable pageable);
+	
+	Optional<ItemProjection> findProjectionById(Long id);
+	
+	@Query("SELECT i FROM Item i WHERE i.id IN :ids")
+	List<ItemProjection> findAllProjectionsByIds(@Param("ids") List<Long> ids);
+
 
 	@Query("""
 			    SELECT i FROM Item i

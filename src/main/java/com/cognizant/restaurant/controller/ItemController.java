@@ -28,6 +28,16 @@ public class ItemController {
 		return itemService.getAllItems();
 	}
 	
+	@GetMapping("/{id}")
+	public ItemProjection getItem(@PathVariable Long id) {
+		return itemService.getItem(id);
+	}
+	
+	@GetMapping("/ids")
+	public List<ItemProjection> getItems(@RequestParam(name="ids") List<Long> ids) {
+		return itemService.getItems(ids);
+	}
+	
 //	@PostMapping("/all")
 //	public void storeAllObjects() {
 //		itemService.setAllItems();

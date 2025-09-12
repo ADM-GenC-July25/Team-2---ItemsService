@@ -362,4 +362,13 @@ public class ItemService {
 		return itemRepository.findFilteredItems(categoryName, spiceLevelName, minPrice, maxPrice, execludedAllergens);
 		
 	}
+
+	public Item putImage(Long id, String img) {
+		Item ip = itemRepository.findById(id).orElse(null);
+		if(ip == null) {
+			return null;
+		}
+		ip.setImg(img);
+		return itemRepository.save(ip);
+	}
 }
